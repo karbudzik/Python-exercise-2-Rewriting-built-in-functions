@@ -4,11 +4,13 @@ def min(x, y):
     """
     return x if x<y else y
 
+
 def max(x, y):
     """
     Returns a greater number from two numbers given as arguments
     """
     return x if x>y else y
+
 
 def len(iterable):
     """
@@ -19,37 +21,69 @@ def len(iterable):
         count += 1
     return count
 
+
 def multiply(x, y):
-    pass
+    """
+    Returns a result of multiplying two integers without using /, // and * or any built-in functions
+    """
+    result = 0
+    for number in range(0, x):
+        result += y
+    return result
 
 
 def pow(x, y):
-    pass
+    """
+    Returns a result of exponantiating two integers without using ** or any built-in functions
+    """
+    result = 1
+    for number in range(0, x):
+        result *= y
+    return result
 
 
 def divmod(x, y):
-    pass		
+    """
+    For two integer numbers as inputs, returns the tuple with first value as a result of x // y 
+    and the second as a result of x % y without using // or % operators or any built-in functions.
+    """ 	
+    floor_division_result = 0
+    
+    if x*y > 0 and x > 0:
+        while (floor_division_result + 1) * y <= x:
+            floor_division_result += 1
+    elif x*y > 0 and x < 0:
+        while (floor_division_result + 1) * -y <= -x:
+            floor_division_result += 1
+    elif x*y < 0 and x > 0:
+        while (floor_division_result) * y < x:
+            floor_division_result -= 1
+    elif x*y < 0 and x < 0:
+        while (floor_division_result) * y > x:
+            floor_division_result -= 1
+
+    modulo_result = x - (y * floor_division_result)
+    
+    if y != 0:
+        return (floor_division_result, modulo_result)
+    else:
+        return "You can't divide by 0"
 
 
-# Implement the multiply(x, y) function for integer numbers as inputs! Do not use the *, /, and // operators and any built-in functions, but you may (and should) use +.
 
-#     For any two integer inputs the returned value equals the result of x * y
-#     Neither *, /, // nor any built-in functions are used
+print(divmod(2, 8))
+print(2 // 8)
+print(2 % 8)
 
-# pow() 	
 
-# Implement the pow(x, y) function for real base numbers and positive integer exponents! Do not use the ** operator and any built-in functions! Here you can use *.
 
-#     For inputs from the specified domain the returned value equals the result of x**y
-#     Neither ** nor any built-in functions are used
-
-# divmod() 	
+# dodać min i max ale dla list	
 
 # OPTIONAL
 
-# Implement the divmod(x, y) function for for two integer numbers as inputs! Do not use the // and the % operators and any built-in functions! It should return a tuple: the first value should be equal to the value of x // y and the second equal to the value of x % y! Do not use the // operator and any built-in functions!
 
-#     For any two positive integer inputs the returned value equals (x // y, x % y)
-#     For any two +/- integer inputs the returned value equals (x // y, x % y)
-#     Neither // nor any built-in functions are used
-
+# How can you divide and calulate modulo without actually dividing? 
+# Try to add up numbers until you reach the goal! 
+# We'll test only with not too large numbers (between -100 and 100). 
+# Also, reproducing integer division can be tricky; as you can read in the documentation, 
+# "The result is always rounded towards minus infinity: 1//2 is 0, (-1)//2 is -1, 1//(-2) is -1, and (-1)//(-2) is 0."
